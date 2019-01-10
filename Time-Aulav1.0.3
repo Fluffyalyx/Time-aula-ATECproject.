@@ -1,0 +1,109 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+#include<windows.h>
+int main(){
+	time_t t;
+	int k,kt,m,mt,m2,mt2;
+	system("color 0e");
+	do{
+		system("cls");
+		printf("Bem vindo ao Time-Aulas.exe!\n\nIntroduza 1 para aceder ao menu , ou outro numero qualquer para inicializacao rapida!\n\n");
+		scanf("%d",&m);
+		if(m==1){
+			system("cls");
+			printf("Bem vindo ao menu! Introduza o numero respetivo da escolha.(menu sob construcao)\n");
+			printf("1)Mostrar o proximo evento(default)\n2)Mostrar tudo.\n3)Opcoes de cores.\nIntroduza outro numero para voltar ao inicio.\n");
+			scanf("%d",&mt);
+			system("cls");
+			switch(mt){
+				case 1:
+					m=0;break;
+				case 2:
+					do{
+						sleep(1);
+						t=time(0);
+						k=t%86400;
+						system("cls");
+						if(k<37920){
+							kt=37920-k;
+							printf("Falta %d minutos e %d segundos para o intervalo!\n",kt/60,kt%60);		
+						}if(k<38520&&k>37920){			
+							printf("!!!!!!Esta no intervalo!!!!!\n");
+						}if(k<45720){
+							kt=45720-k;
+							printf("Falta %d minutos e %d segundos para a hora de almoço!\n",kt/60,kt%60);		
+						}if(k<48720&&k>45720){
+							printf("!!!Esta na hora de almoco!!!\n");
+						}if(k<55920){
+							kt=55920-k;
+							printf("Falta %d minutos e %d segundos para o intervalo da tarde!\n",kt/60,kt%60);
+						}if(k<60120){
+							kt=60120-k;
+							printf("Falta %d minutos e %d segundos para fim da ultima aula!!!\n",kt/60,kt%60);
+						}	
+					}while(k<60120);
+				case 3:
+					do{
+						
+						system("cls");
+						printf("Esochla o esquema de cor.\n1)Default.\n2)White on Black.\n3)Black on White.\n");
+						printf("Outro numero para voltar ao menu\n");
+						scanf("%d",&mt2);
+						system("cls");
+						switch(mt2){
+							case 1:
+								system("color 0e");
+								printf("Pretende escolher outra cor?\n1)sim\nOutro numero caso nao\n");
+								scanf("%d",&m2);break;
+							case 2:
+								system("color 0f");
+								printf("Pretende escolher outra cor?\n1)sim\nOutro numero caso nao\n");
+								scanf("%d",&m2);break;
+							case 3:
+								system("color f0");
+								printf("Pretende escolher outra cor?\n1)sim\nOutro numero caso nao\n");
+								scanf("%d",&m2);break;
+							default:
+								m2=0;
+								mt=0;
+								system("cls");
+						}
+					}while(m2==1);
+				default:
+					printf("returning to menu");
+					mt=0;
+					sleep(2);
+			}
+		}
+	}while(mt==0);
+	if(m!=1){
+		do{
+			sleep(1);
+			t=time(0);
+			k=t%86400;
+			system("cls");
+			if(k<37920){
+				kt=37920-k;
+				printf("Falta %d minutos e %d segundos para o intervalo!\n",kt/60,kt%60);		
+			}if(k<38520&&k>37920){			
+				printf("!!!!!!Esta no intervalo!!!!!\n");
+			}if(k<45720&&k>38520){
+				kt=45720-k;
+				printf("Falta %d minutos e %d segundos para a hora de almoço!\n",kt/60,kt%60);		
+			}if(k<48720>45720){
+				printf("!!!Esta na hora de almoco!!!\n");
+			}if(k<55920&&k>48720){
+				kt=55920-k;
+				printf("Falta %d minutos e %d segundos para o intervalo!\n",kt/60,kt%60);
+			}if(k<60120&&k>55920){
+				kt=60120-k;
+				printf("Falta %d minutos e %d segundos para fim da ultima aula!!!\n",kt/60,kt%60);
+			}	
+		}while(k<60120);	
+	}
+	system("cls");
+	printf("Aulas ja acabaram :P\n\n\n\n\n");
+	system("pause");
+	return (0);
+}
