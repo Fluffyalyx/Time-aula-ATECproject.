@@ -1,0 +1,319 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<ctype.h>
+#include<string.h>
+int interface(int ai,char ac[20],char ac2[20]){
+	if(ai>0){
+		printf("interface gigabitethernet 0/%d\nip address %s %s\nno shutdown\n",ai-1,ac,ac2);
+		printf("exit\n");
+	}
+	return(0);
+	
+}
+int namegive(char nc[20],char nc2[20]){
+	printf("hostname %s\nbanner motd @\n%s\n@\n",nc,nc2);
+	return 0;
+	
+}
+int racess(int a, int b, char cc[20],char cc2[20]){
+	if(a==2){
+		printf("ip domain-name %s\ncrypto key generate rsa\n\n\n\n\n",cc2);
+	}
+	printf("line vty 0 4\n");
+	if(a==1){
+		if(b==0){
+			printf("login\npassword %s\n",cc);
+		}else{
+			printf("login local\n");
+		}
+	}else{
+		printf("login local\ntransport input ssh\nexit\n");
+		
+	}
+	return 0;
+}
+int login(int a,int b, int c, char bc[20],char bc1[20],char bc2[20]){
+	if (c==0){
+		printf("enable password %s\n",bc2);	
+	}else{
+		printf("enable secret %s\n",bc2);
+	}
+	printf("line console 0\n");
+	if(a==0){
+		printf("login\n");
+		if(b==0){
+			printf("password %s\n",bc1);
+		}else{
+			printf("secret %s\n",bc1);
+		}
+	}else{
+		printf("login local\n");
+		if(b==0){
+			printf("username %s password %s\n",bc,bc1);
+		}else{
+			printf("username %s secret %s\n",bc,bc1);
+		}
+	}
+	printf("service password-encryption\n");
+	return 0;
+	
+}
+
+int main(){
+	int a=0,b[2],c[3],d=0,e=0,f=0,m,m2,ai[3],i;
+	char ac[20],ac2[20],aca[20],aca2[20],acb[20],acb2[20],nc[20],nc2[20],bc[20],bc1[20],bc2[20],cc[20],cc2[20],rr10[50],rr0[50],rr1[50],rr2[50],rr3[50],rr4[50],rr5[50],rr6[50],rr7[50],rr8[50],rr9[50];
+	for(i=0;i<3;i++){
+		ai[i]=0;
+	}
+	printf("Bem vindo ao Router e Switch config generator para Cisco Packet Tracer.\nDeveloped by AlyxMarideira\n");
+	printf("O programa consiste de menu com submenus com opçoes de configuracao por ordem cronologica.\nBasta escolher os parametros que pretende ter(que sao pedidos no teste)\ne no final selecionar \"obter configuracao\" e de seguida copiar\no conteudu da janela para um .txt e editar os ip , nomes passwords la.\nNAO INCLUI CONFIGURACAO DE DHCP ");
+	printf("\n\nPara comecar escolhe o que pretende configurar\n1)Router.\n2)Switch.\n");
+	scanf("%d",&m);
+	system("cls");
+	switch(m){
+		case 1:{
+			printf("Configuracao de router.\n");
+			printf("Digite o nome de router\n");
+			scanf("%s",&nc);
+			system("cls");
+			printf("Digite o MOTD (devera configurar no final as quebras de linha manualmente, 1 quebra por defeito)\n");
+			scanf("%s",&nc2);
+			printf("Pretende configurar Gbit ethernet 0/0?\n0)nao\n1)sim\n");
+			scanf("%d",&a);
+				if(a==1){
+					printf("Introduza IP adress do Gbit ethernet 0/0.\n");
+					fflush(stdin);
+					scanf("%s",&ac);
+					fflush(stdin);
+					printf("introduza subnetmask do Gbit ethernet 0/0\n");
+					scanf("%s",&ac2);
+					ai[0]=1;
+				}
+				system("cls");
+			printf("Configuracao de router.\n");
+			printf("Pretende configurar Gbit ethernet 0/1?\n0)nao\n1)sim\n");
+			scanf("%d",&a);
+				if(a==1){
+					printf("Introduza IP adress do Gbit ethernet 0/1.\n");
+					fflush(stdin);
+					scanf("%s",&aca);
+					fflush(stdin);
+					printf("introduza subnetmask do Gbit ethernet 0/1\n");
+					scanf("%s",&aca2);
+					ai[1]=2;
+				}
+				system("cls");
+			printf("Configuracao de router.\n");
+			printf("Pretende configurar Gbit ethernet 0/2?\n0)nao\n1)sim\n");
+			scanf("%d",&a);
+				if(a==1){
+					printf("Introduza IP adress do Gbit ethernet 0/2.\n");
+					fflush(stdin);
+					scanf("%s",&acb);
+					fflush(stdin);
+					printf("introduza subnetmask do Gbit ethernet 0/2\n");
+					scanf("%s",&acb2);
+					ai[2]=3;
+				}
+				system("cls");
+				printf("configuracao de protecao de consola\nPretende ter username no login?\n0)nao\n1)sim\n");
+				scanf("%d",&b[0]);
+				system("cls");
+				printf("que tipo de password?(Encriptaçao incluida).\n0)password.\n1)secret.\n");
+				scanf("%d",&b[1]);
+				system("cls");
+				if(b[0]==1){
+					printf("introduza o username\n");
+					fflush(stdin);
+					scanf("%s",&bc);
+					fflush(stdin);
+					system("cls");
+				}
+				printf("introduza a password\n",bc);
+				fflush(stdin);
+				scanf("%s",&bc1);
+				fflush(stdin);
+				system("cls");
+				printf("como pretende proteger o enable?\n0)password\n1)secret.\n");
+				scanf("%d",&b[2]);
+				printf("introduza essa password\n");
+				fflush(stdin);
+				scanf("%s",&bc2);
+				fflush(stdin);
+				system("cls");
+				printf("Pretende configurar acesso remoto a consola?\n0)nao\n1)sim\n");
+				scanf("%d",&c[0]);
+				system("cls");
+				if(c[0]==1){
+					printf("escolhe o parametro\n1)Telnet\n2)SSH\n");
+					scanf("%d",&c[1]);
+					system("cls");
+					if(c[1]==2){
+						c[2]=1;
+						printf("digite o nome do dominio\n");
+						scanf("%s",&cc2);
+					}else{
+						printf("pretende ter username login para telnet?\n0)nao\n1)sim\n");
+						scanf("%d",&c[2]);
+						system("cls");
+						printf("introduza a password para telnet\n");
+						fflush(stdin);
+						scanf("%s",&cc);
+						fflush(stdin);
+						
+					}
+					if(c[2]==1){
+						if(b[0]==0){
+							printf("Eh nessesario de criar o username para proteger a consola!\n");
+							b[0]=1;
+							printf("introduza o username\n");
+							fflush(stdin);
+							scanf("%s",&bc);
+							fflush(stdin);
+							system("cls");
+						}
+					}
+				}
+				printf("pretende configurar rotas?\n0)nao\n1)sim\n");
+				scanf("%d",&d);
+				system("cls");
+				if(d==1){
+					printf("quantas rotas eh que pretende configurar?(introduza valor entre 0 e 11 para nao avariar)\n");
+					scanf("%d",&e);
+					system("cls");
+					for(i=0;i<e;i++){
+						printf("Introduza o encaminhamento de rotas no formato:\n[ip da rede] [subnetmask] [ip destino]\n Rota %d:",i+1);
+						switch(i){
+							case 0:
+								fflush(stdin);
+								scanf("%[^\n]s",&rr0);
+								fflush(stdin);
+								break;
+							case 1:
+								fflush(stdin);
+								scanf("%[^\n]s",&rr1);
+								fflush(stdin);
+								break;
+							case 2:
+								fflush(stdin);
+								scanf("%[^\n]s",&rr2);
+								fflush(stdin);
+								break;
+							case 3:
+								fflush(stdin);
+								scanf("%[^\n]s",&rr3);
+								fflush(stdin);
+								break;
+							case 4:
+								fflush(stdin);
+								scanf("%[^\n]s",&rr4);
+								fflush(stdin);
+								break;
+							case 5:
+								fflush(stdin);
+								scanf("%[^\n]s",&rr5);
+								fflush(stdin);
+								break;
+							case 6:
+								fflush(stdin);
+								scanf("%[^\n]s",&rr6);
+								fflush(stdin);
+								break;
+							case 7:
+								fflush(stdin);
+								scanf("%[^\n]s",&rr7);
+								fflush(stdin);
+								break;
+							case 8:
+								fflush(stdin);
+								scanf("%[^\n]s",&rr8);
+								fflush(stdin);
+								break;
+							case 9:
+								fflush(stdin);
+								scanf("%[^\n]s",&rr9);
+								fflush(stdin);
+								break;
+							default:
+								fflush(stdin);
+								scanf("%[^\n]s",&rr10);
+								fflush(stdin);
+						}
+						system("cls");
+					}
+				}
+				
+				
+				
+				
+				
+				printf("Copie o conteudu da pagina ate a linha de ***** para o txt e verifique se esta tudo em ordem.\n");         //COMEÇA O PRINTING DE CONFIGURAÇAO
+				system("pause");
+				system("cls");
+				printf("enable\nconfigure terminal\n\nno ip domain-lookup\n\n");
+				namegive(nc,nc2);
+				interface(ai[0],ac,ac2);
+				interface(ai[1],acb,aca2);
+				interface(ai[2],acb,acb2);
+				login(b[0],b[1],b[2],bc,bc1,bc2);
+				printf("\n");
+				for(i=0;i<e;i++){
+					switch(i){
+						case 0:
+							printf("ip route %s\n",rr0);
+							break;
+						case 1:
+							printf("ip route %s\n",rr1);
+							break;
+						case 2:
+							printf("ip route %s\n",rr2);
+							break;
+						case 3:
+							printf("ip route %s\n",rr3);
+							break;
+						case 4:
+							printf("ip route %s\n",rr4);
+							break;
+						case 5:
+							printf("ip route %s\n",rr5);
+							break;
+						case 6:
+							printf("ip route %s\n",rr6);
+							break;
+						case 7:
+							printf("ip route %s\n",rr7);
+							break;
+						case 8:
+							printf("ip route %s\n",rr8);
+							break;
+						case 9:
+							printf("ip route %s\n",rr9);
+							break;
+						default:
+							printf("ip route %s\n",rr10);
+						}
+					
+				}
+				if(c[0]==1){
+					racess(c[1],c[2],cc,cc2);
+				}
+				printf("\n\n\n\n\n\n\n\n");
+				printf("**************************************************************************\n");
+				system("pause");
+			break;
+		}
+		case 2:
+			system("cls");
+			printf("configuracao de Switch\nInfelizmente nao tive tempo de fazer configuraçao de switch\n");
+			system("pause");
+			main();
+			
+			break;
+		default:
+			printf("entao? se introduzires numeros errados nos menus , talvez este programa nao e para ti...\n");
+			system("pause");
+			main();
+	}
+	system("pause");
+	return(0);
+}
